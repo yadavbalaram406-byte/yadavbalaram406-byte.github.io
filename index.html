@@ -10,8 +10,27 @@
     </style>
 </head>
 <body>
-    <h1>🎉 域名绑定成功！leobritney.top 已上线</h1>
+    <h1>🎉 2026/4/15日！域名绑定成功！leobritney.top 已上线</h1>
     <p>这是我的个人站点，由 GitHub Pages 托管 🚀</p>
     <p>GitHub 用户名：yadavbalaram406-byte</p>
+    <p>今天Britney有点郁闷</p>
+    <div id="datetime" style="text-align:center; margin:20px 0; font-size:16px; color:#333;"></div>
+
+<script>
+function updateDateTime() {
+  let now = new Date();
+  document.getElementById('datetime').innerText = 
+    now.toLocaleString('zh-CN', {
+      year:'numeric',
+      month:'2-digit',
+      day:'2-digit',
+      hour:'2-digit',
+      minute:'2-digit',
+      second:'2-digit'
+    });
+}
+updateDateTime();
+setInterval(updateDateTime, 1000);
+</script>
 </body>
 </html>
