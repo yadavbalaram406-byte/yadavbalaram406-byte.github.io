@@ -59,20 +59,21 @@
     .container {
       position: relative;
       z-index: 1;
-      min-height: 100vh;
+      height: 100vh;
+      height: 100dvh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px;
-      gap: 40px;
+      padding: 20px 20px;
+      gap: 24px;
     }
 
     /* Joker Image */
     .joker-container {
       position: relative;
-      width: 280px;
-      height: 280px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       overflow: hidden;
       border: 3px solid #00ff41;
@@ -81,6 +82,7 @@
         0 0 60px rgba(0, 255, 65, 0.1),
         inset 0 0 30px rgba(0, 255, 65, 0.1);
       animation: pulse-glow 3s ease-in-out infinite;
+      flex-shrink: 0;
     }
 
     .joker-container::before {
@@ -131,15 +133,17 @@
     }
     
     .name {
-      font-size: clamp(2.5rem, 8vw, 4rem);
+      font-size: clamp(1.6rem, 6vw, 3.5rem);
       font-weight: 900;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       text-shadow: 
         0 0 10px #00ff41,
         0 0 20px #00ff41,
         0 0 40px #00ff41;
       animation: flicker 5s infinite;
+      padding: 0 10px;
+      word-break: break-word;
     }
 
     @keyframes flicker {
@@ -154,14 +158,15 @@
     /* Quote */
     .quote {
       font-family: 'VT323', monospace;
-      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      font-size: clamp(1.2rem, 4vw, 2rem);
       color: #a855f7;
       text-shadow: 
         0 0 10px #a855f7,
         0 0 20px #a855f7;
       letter-spacing: 0.1em;
       position: relative;
-      padding: 20px 40px;
+      padding: 10px 30px;
+      flex-shrink: 0;
     }
 
     .quote::before,
@@ -180,12 +185,13 @@
       background: rgba(0, 255, 65, 0.05);
       border: 2px solid #00ff41;
       border-radius: 10px;
-      padding: 30px 50px;
+      padding: 16px 36px;
       box-shadow: 
         0 0 20px rgba(0, 255, 65, 0.2),
         inset 0 0 30px rgba(0, 255, 65, 0.05);
       position: relative;
       overflow: hidden;
+      flex-shrink: 0;
     }
 
     .clock-container::before {
@@ -199,16 +205,16 @@
     }
 
     .clock-label {
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       color: #00ff4180;
       letter-spacing: 0.3em;
-      margin-bottom: 10px;
+      margin-bottom: 4px;
       text-align: center;
     }
 
     .clock-time {
       font-family: 'VT323', monospace;
-      font-size: clamp(3rem, 12vw, 6rem);
+      font-size: clamp(2.5rem, 10vw, 5rem);
       letter-spacing: 0.1em;
       text-shadow: 
         0 0 10px #00ff41,
@@ -226,19 +232,19 @@
 
     .clock-date {
       font-family: 'VT323', monospace;
-      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      font-size: clamp(1rem, 3.5vw, 1.5rem);
       letter-spacing: 0.2em;
-      margin-top: 10px;
+      margin-top: 4px;
       text-align: center;
       color: #00ff41;
       opacity: 0.9;
     }
 
     .clock-timezone {
-      font-size: 0.9rem;
+      font-size: 0.75rem;
       color: #00ff4180;
       letter-spacing: 0.2em;
-      margin-top: 8px;
+      margin-top: 4px;
       text-align: center;
     }
 
@@ -260,10 +266,10 @@
 
     /* Footer */
     .footer {
-      position: fixed;
-      bottom: 20px;
-      font-size: 0.7rem;
-      color: #00ff4150;
+      position: absolute;
+      bottom: 8px;
+      font-size: 0.6rem;
+      color: #00ff4130;
       letter-spacing: 0.2em;
     }
 
