@@ -367,6 +367,18 @@ body.elder .app{font-size:16px}body.elder .claim .nm,body.elder .ev .bd .t,body.
 .svcgrid2 .si svg{width:36px;height:36px}
 .svcgrid2 .sv{border:none!important;background:transparent!important;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px;font-family:inherit;font-size:12px;font-weight:600;color:#2B3A45;cursor:pointer;padding:4px 0 2px;appearance:none;-webkit-appearance:none}
 #svcMods .mcard .ms{margin-top:7px}
+
+/* 消息 / 我的：去低饱和底块，彩色图形直接落白底 */
+.msg .mi{width:36px;height:36px;border-radius:0;background:transparent!important;color:inherit}
+.msg .mi svg{width:36px;height:36px}
+.av{width:52px;height:52px;background:transparent!important;border:none;display:flex;align-items:center;justify-content:center}
+.av svg{width:52px;height:52px}
+#meMods .mcard .mi{width:36px;height:36px;background:transparent!important;border-radius:0}
+#meMods .mcard .mi svg{width:36px;height:36px}
+.fcard .fa{width:44px;height:44px;background:transparent!important;border-radius:0;display:flex;align-items:center;justify-content:center}
+.fcard .fa svg{width:44px;height:44px}
+.mem .ma{background:transparent!important;width:30px;height:30px}
+.mem .ma svg{width:30px;height:30px}
 </style>
 </head>
 <body>
@@ -496,17 +508,17 @@ body.elder .app{font-size:16px}body.elder .claim .nm,body.elder .ev .bd .t,body.
       <div class="hd"><svg class="logo" viewBox="0 0 40 40" id="logo3"></svg><div><div class="tt">服务通知</div><div class="sub">官方通知 · 非营销消息</div></div><div class="sp"></div><button class="iconbtn" style="font-size:10.5px;color:var(--canal);width:auto;padding:0 10px" onclick="readAll()">全部已读</button></div>
       <div class="mtabs"><button class="on" onclick="mtab(this,'all')">全部</button><button onclick="mtab(this,'ok')">到账</button><button onclick="mtab(this,'todo')">待办</button><button onclick="mtab(this,'pol')">政策</button></div>
       <div id="msglist">
-        <div class="msg unread" data-k="ok" onclick="read(this)"><div class="mi" style="background:var(--locustbg);color:#418B6C"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 4.5 4.5L19 7"/></svg></div><div class="mb"><div class="t">育儿补贴已到账 <span class="kind">到账通知</span></div><div class="d">¥3,600 已发放至您的社保卡金融账户。</div><div class="tm">今天 09:12</div></div></div>
-        <div class="msg unread" data-k="todo" onclick="read(this)"><div class="mi" style="background:var(--glazebg);color:#B18A36"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div class="mb"><div class="t">高龄津贴资格复核提醒 <span class="kind">待办</span></div><div class="d">为母亲代办的高龄津贴需补充失能评估材料。</div><div class="tm">昨天 16:40</div></div></div>
-        <div class="msg unread" data-k="ok" onclick="read(this)"><div class="mi" style="background:var(--canalbg);color:var(--canal)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4zM4 10h16"/></svg></div><div class="mb"><div class="t">住房公积金提取审核通过 <span class="kind">办理进度</span></div><div class="d">租房提取 ¥6,000 已审核通过，预计 1–3 个工作日到账。</div><div class="tm">11月24日 14:05</div></div></div>
-        <div class="msg" data-k="pol" onclick="read(this)"><div class="mi" style="background:#F3F7FA;color:var(--muted)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 10h16M4 15h10"/></svg></div><div class="mb"><div class="t">12 月补贴日历已更新 <span class="kind">政策更新</span></div><div class="d">新增 6 项地方补贴开放时点，其中 3 项与您已建档信息匹配。</div><div class="tm">11月22日 10:00</div></div></div>
+        <div class="msg unread" data-k="ok" onclick="read(this)"><div class="mi" id="msgIco1"></div><div class="mb"><div class="t">育儿补贴已到账 <span class="kind">到账通知</span></div><div class="d">¥3,600 已发放至您的社保卡金融账户。</div><div class="tm">今天 09:12</div></div></div>
+        <div class="msg unread" data-k="todo" onclick="read(this)"><div class="mi" id="msgIco2"></div><div class="mb"><div class="t">高龄津贴资格复核提醒 <span class="kind">待办</span></div><div class="d">为母亲代办的高龄津贴需补充失能评估材料。</div><div class="tm">昨天 16:40</div></div></div>
+        <div class="msg unread" data-k="ok" onclick="read(this)"><div class="mi" id="msgIco3"></div><div class="mb"><div class="t">住房公积金提取审核通过 <span class="kind">办理进度</span></div><div class="d">租房提取 ¥6,000 已审核通过，预计 1–3 个工作日到账。</div><div class="tm">11月24日 14:05</div></div></div>
+        <div class="msg" data-k="pol" onclick="read(this)"><div class="mi" id="msgIco4"></div><div class="mb"><div class="t">12 月补贴日历已更新 <span class="kind">政策更新</span></div><div class="d">新增 6 项地方补贴开放时点，其中 3 项与您已建档信息匹配。</div><div class="tm">11月22日 10:00</div></div></div>
       </div>
       <div class="foot-txt">领补贴，上国数通 · 通知内容由政策规则自动生成</div>
     </section>
 
     <section class="page" id="p-me">
       <div class="hd"><svg class="logo" viewBox="0 0 40 40" id="logo4"></svg><div><div class="tt">我的</div><div class="sub">个人档案 · 家庭账户</div></div></div>
-      <div class="profile"><div class="av">张</div><div><div class="nm">张女士</div><div class="vr">✓ 已实名认证 · ID 已核验</div></div><div class="pill">家庭账户 3 人</div></div>
+      <div class="profile"><div class="av" id="avZhang"></div><div><div class="nm">张女士</div><div class="vr">✓ 已实名认证 · ID 已核验</div></div><div class="pill">家庭账户 3 人</div></div>
       <div id="meMods"></div>
       <div class="sec-t" style="margin:0 16px 9px"><b>我的家庭</b><span>亲情代办</span></div>
       <div class="fam" id="fam"></div>
@@ -595,7 +607,15 @@ var G={
  cert:'<rect x="4" y="8" width="32" height="24" rx="4" fill="#fff" stroke="#8B7BC4" stroke-width="2.4"/><circle cx="14" cy="17" r="4.2" fill="#C9BDE8"/><path d="M7.5 27c0-3.2 3-5.2 6.5-5.2s6.5 2 6.5 5.2" fill="#C9BDE8"/><path d="M23 15h9M23 20h9" stroke="#B6A6DC" stroke-width="2" stroke-linecap="round"/><rect x="23" y="24" width="4.5" height="4.5" rx="1" fill="#E7B84F"/><rect x="29" y="24" width="3.5" height="3.5" rx=".7" fill="#3E8FD0"/>',
  family:'<circle cx="11" cy="14" r="5" fill="#E7B84F"/><path d="M4 29c0-4 3.2-7 7-7s7 3 7 7" fill="#E7B84F"/><circle cx="29" cy="14" r="5" fill="#5EAC8C"/><path d="M22 29c0-4 3.2-7 7-7s7 3 7 7" fill="#5EAC8C"/><circle cx="20" cy="9" r="4" fill="#3E8FD0"/><path d="M14 21c0-3 2.7-5 6-5s6 2 6 5" fill="#3E8FD0"/><path d="M6 33h28" stroke="#D6E4EE" stroke-width="2" stroke-linecap="round"/>',
  all:'<rect x="5" y="5" width="13" height="13" rx="3.4" fill="#3E8FD0"/><rect x="22" y="5" width="13" height="13" rx="3.4" fill="#5EAC8C"/><rect x="5" y="22" width="13" height="13" rx="3.4" fill="#E7B84F"/><rect x="22" y="22" width="13" height="13" rx="3.4" fill="#DD6A55"/><circle cx="11.5" cy="11.5" r="2.4" fill="#fff" opacity=".9"/><path d="M25 11.5h7M28.5 8v7" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".9"/><circle cx="11.5" cy="28.5" r="2.4" fill="#fff" opacity=".9"/><path d="M25 28.5h7M25 32h5" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".9"/>',
- me:'<circle cx="20" cy="20" r="15" fill="#EAF3FB" stroke="#3E8FD0" stroke-width="2.2"/><circle cx="20" cy="16" r="5.2" fill="#3E8FD0"/><path d="M10 31c0-5.2 4.4-9 10-9s10 3.8 10 9" fill="#3E8FD0"/><circle cx="31" cy="8" r="6" fill="#E7B84F"/><path d="M31 4.8l1.1 2.3 2.5.4-1.8 1.8.4 2.5-2.2-1.2-2.2 1.2.4-2.5-1.8-1.8 2.5-.4z" fill="#fff"/>'
+ me:'<circle cx="20" cy="20" r="15" fill="#EAF3FB" stroke="#3E8FD0" stroke-width="2.2"/><circle cx="20" cy="16" r="5.2" fill="#3E8FD0"/><path d="M10 31c0-5.2 4.4-9 10-9s10 3.8 10 9" fill="#3E8FD0"/><circle cx="31" cy="8" r="6" fill="#E7B84F"/><path d="M31 4.8l1.1 2.3 2.5.4-1.8 1.8.4 2.5-2.2-1.2-2.2 1.2.4-2.5-1.8-1.8 2.5-.4z" fill="#fff"/>',
+ arrived:'<rect x="5" y="10" width="30" height="21" rx="4" fill="#3E8FD0"/><rect x="9" y="15" width="8" height="8" rx="2" fill="#E7B84F"/><path d="M21 16h10M21 22h7" stroke="#fff" stroke-width="2" stroke-linecap="round"/><circle cx="31" cy="30" r="7" fill="#5EAC8C"/><path d="M27.5 30l2.5 2.5 4.5-5" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
+ todo:'<path d="M20 5a9 9 0 0 0-9 9c0 8-4 10-4 10h26s-4-2-4-10a9 9 0 0 0-9-9z" fill="#FDF6E4" stroke="#E7B84F" stroke-width="2.4" stroke-linejoin="round"/><path d="M17 29a3 3 0 0 0 6 0" stroke="#E7B84F" stroke-width="2.2" stroke-linecap="round"/><circle cx="30" cy="10" r="6" fill="#DD6A55"/><path d="M30 7v3.6M30 13.2v.2" stroke="#fff" stroke-width="2" stroke-linecap="round"/>',
+ progress:'<rect x="7" y="5" width="26" height="30" rx="4" fill="#fff" stroke="#3E8FD0" stroke-width="2.4"/><path d="M13 13h14" stroke="#9CCBEC" stroke-width="2.2" stroke-linecap="round"/><rect x="12" y="19" width="16" height="5" rx="2.5" fill="#D6EAF9"/><rect x="12" y="19" width="11" height="5" rx="2.5" fill="#3E8FD0"/><path d="M13 29h6" stroke="#9CCBEC" stroke-width="2.2" stroke-linecap="round"/><circle cx="30" cy="29" r="6" fill="#5EAC8C"/><path d="M27 29l2 2 4-4" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
+ news:'<path d="M8 6h20a3 3 0 0 1 3 3v22a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3z" fill="#fff" stroke="#8B7BC4" stroke-width="2.4"/><path d="M10 14h16M10 20h16M10 26h10" stroke="#C9BDE8" stroke-width="2.2" stroke-linecap="round"/><circle cx="30" cy="9" r="6" fill="#E7B84F"/><path d="M30 6v3.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/>',
+ idcard:'<rect x="4" y="8" width="32" height="24" rx="4" fill="#fff" stroke="#3E8FD0" stroke-width="2.4"/><circle cx="14" cy="18" r="4.2" fill="#9CCBEC"/><path d="M8 28c0-3.3 3-5.3 6-5.3s6 2 6 5.3" fill="#9CCBEC"/><path d="M23 16h9M23 22h9" stroke="#C9DDF0" stroke-width="2" stroke-linecap="round"/><circle cx="31" cy="29" r="5" fill="#5EAC8C"/><path d="M28.5 29l1.8 1.8 3.2-3.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>',
+ edu:'<path d="M4 16 L20 9 L36 16 L20 23 Z" fill="#3E8FD0"/><path d="M10 19v8c0 3 5 6 10 6s10-3 10-6v-8" fill="#5B8FC9"/><path d="M36 16v10" stroke="#E7B84F" stroke-width="2.4" stroke-linecap="round"/><circle cx="36" cy="28" r="2.6" fill="#E7B84F"/>',
+ health:'<rect x="5" y="7" width="30" height="27" rx="4" fill="#fff" stroke="#5EAC8C" stroke-width="2.4"/><path d="M10 14h12M10 19h8" stroke="#C6E5D6" stroke-width="2.2" stroke-linecap="round"/><path d="M9 28h5l2-4 3 8 2.5-6 2 2h7" fill="none" stroke="#DD6A55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
+ assess:'<rect x="6" y="5" width="28" height="30" rx="4" fill="#fff" stroke="#E7B84F" stroke-width="2.4"/><path d="M12 13h16M12 20h13" stroke="#EAD3A3" stroke-width="2.2" stroke-linecap="round"/><path d="M13 28l3 3 5-6" fill="none" stroke="#5EAC8C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 29h6" stroke="#EAD3A3" stroke-width="2.2" stroke-linecap="round"/>'
 };
 function gicon(k,sz){sz=sz||36;return '<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 40 40">'+(G[k]||G.all)+'</svg>'}
 
@@ -741,35 +761,39 @@ function updateDot(){var n=document.querySelectorAll('.msg.unread').length;var d
 
 /* 我的：分层模块 + 明显展开按钮 */
 var idSvg='<svg viewBox="0 0 38 52" fill="none"><circle cx="19" cy="16" r="9" fill="#B9CCE0"/><path d="M4 52c0-9 7-16 15-16s15 7 15 16" fill="#B9CCE0"/></svg>';
-var person=function(c,type){return '<svg width="42" height="42" viewBox="0 0 42 42"><circle cx="21" cy="21" r="21" fill="'+c+'"/>'+
- (type==='grand'?'<circle cx="21" cy="16" r="7" fill="#FFF"/><path d="M8 40c0-8 6-13 13-13s13 5 13 13" fill="#FFF"/><circle cx="15" cy="9" r="4" fill="#FFF"/>':
- type==='child'?'<circle cx="21" cy="19" r="6" fill="#FFF"/><path d="M12 37c0-6 4-10 9-10s9 4 9 10" fill="#FFF"/>':
- '<circle cx="21" cy="15" r="7" fill="#FFF"/><path d="M9 39c0-8 5-13 12-13s12 5 12 13" fill="#FFF"/>')+'</svg>'};
+/* 彩色卡通头像：无低饱和底块，直接落在白底上 */
+var AVATAR={
+ zhang:'<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#FDEEEA"/><path d="M8 25c0-10 7-17 16-17s16 7 16 17v9H8z" fill="#5B6B7D"/><ellipse cx="24" cy="24" rx="12" ry="13" fill="#F6CFB4"/><path d="M12 22c0-8 5-13 12-13s12 5 12 13c0-5-5-8-12-8s-12 3-12 8z" fill="#5B6B7D"/><circle cx="19" cy="24" r="1.6" fill="#3A4A55"/><circle cx="29" cy="24" r="1.6" fill="#3A4A55"/><path d="M21 30q3 3 6 0" stroke="#C96B5C" stroke-width="1.6" fill="none" stroke-linecap="round"/><ellipse cx="15" cy="28" rx="2.6" ry="1.6" fill="#F1A79A" opacity=".7"/><ellipse cx="33" cy="28" rx="2.6" ry="1.6" fill="#F1A79A" opacity=".7"/><path d="M10 47c0-8 6-13 14-13s14 5 14 13" fill="#E7B84F"/></svg>',
+ grand:'<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#FDF6E4"/><path d="M10 24c0-9 6-15 14-15s14 6 14 15v10H10z" fill="#E6E2DC"/><ellipse cx="24" cy="25" rx="11.5" ry="12" fill="#F4D2B8"/><circle cx="19" cy="25" r="4.2" fill="none" stroke="#8B7BC4" stroke-width="1.6"/><circle cx="29" cy="25" r="4.2" fill="none" stroke="#8B7BC4" stroke-width="1.6"/><path d="M23.2 25h1.6" stroke="#8B7BC4" stroke-width="1.6"/><path d="M21 32q3 2.4 6 0" stroke="#C96B5C" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M8 47c0-8 7-13 16-13s16 5 16 13" fill="#5EAC8C"/></svg>',
+ child:'<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#FDEEEA"/><ellipse cx="24" cy="26" rx="12" ry="12" fill="#F8D9BD"/><path d="M13 21c0-7 5-11 11-11s11 4 11 11c-3-4-7-5-11-5s-8 1-11 5z" fill="#4A3B33"/><circle cx="19" cy="26" r="2" fill="#3A4A55"/><circle cx="29" cy="26" r="2" fill="#3A4A55"/><path d="M21 32q3 3 6 0" stroke="#C96B5C" stroke-width="1.8" fill="none" stroke-linecap="round"/><circle cx="15" cy="30" r="2.6" fill="#F1A79A" opacity=".7"/><circle cx="33" cy="30" r="2.6" fill="#F1A79A" opacity=".7"/><path d="M9 47c0-8 7-13 15-13s15 5 15 13" fill="#DD6A55"/></svg>',
+ adult:'<svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="#EAF6F0"/><path d="M9 24c0-9 7-15 15-15s15 6 15 15v10H9z" fill="#3E5A52"/><ellipse cx="24" cy="25" rx="11.5" ry="12" fill="#F0C9A8"/><path d="M12 21c0-7 5-12 12-12s12 5 12 12c-4-4-8-5-12-5s-8 1-12 5z" fill="#3E5A52"/><circle cx="19.5" cy="25" r="1.7" fill="#2C3A45"/><circle cx="28.5" cy="25" r="1.7" fill="#2C3A45"/><path d="M21 31q3 2.6 6 0" stroke="#C96B5C" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M8 47c0-8 7-13 16-13s16 5 16 13" fill="#3E8FD0"/></svg>'
+};
+var person=function(c,type){return '<svg width="40" height="40" viewBox="0 0 48 48">'+(AVATAR[type]||AVATAR.adult).replace(/^<svg[^>]*>/,'').replace(/<\/svg>$/,'')+'</svg>'};
 var meGroups=[
  {t:'基础信息',more:'身份与家庭',items:[
-  {k:'身份信息',st:'已齐全 3/3',cls:'t',c:'blue',sub:'证件已核验',i:'<circle cx="12" cy="8" r="3.4"/><path d="M5 20c0-3.9 3.1-7 7-7s7 3.1 7 7"/>',
+  {k:'身份信息',st:'已齐全 3/3',cls:'t',g:'idcard',sub:'证件已核验',
    html:'<div class="idcard"><div class="ich"><span class="em">★</span> 居民身份证 <span style="font-size:9px;color:var(--muted);font-weight:400;margin-left:auto">已核验 ✓</span></div><div class="ib"><div class="ph">'+idSvg+'</div><div class="if"><span>姓名</span><span>张*华</span><span>性别</span><span>女</span><span>民族</span><span>汉</span><span>出生</span><span>1992年5月</span><span>住址</span><span>北京市朝阳区**</span><span>身份号码</span><span>110101********1228</span></div></div><div class="ifoot"><span>签发机关：北京市公安局朝阳分局</span><span>有效至 2032.05</span></div></div><div class="mini-note">证件信息仅用于资格核验，原件不出域。</div>'},
-  {k:'家庭关系',st:'待补充 2/3',cls:'a',c:'gold',sub:'配偶证明待补',i:'<circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.4"/>',
+  {k:'家庭关系',st:'待补充 2/3',cls:'a',g:'family',sub:'配偶证明待补',
    html:'<div class="memlist"><div class="mem"><span class="ma" style="background:var(--glazebg)">'+person('#E7B84F','grand').replace('width="42" height="42"','width="28" height="28"')+'</span><div><div class="mn">母亲 78岁</div><div class="ms">已绑定 · 可代办</div></div></div><div class="mem"><span class="ma" style="background:var(--wallbg)">'+person('#E8927F','child').replace('width="42" height="42"','width="28" height="28"')+'</span><div><div class="mn">孩子 2岁</div><div class="ms">已绑定 · 守护中</div></div></div><div class="mem"><span class="ma" style="background:var(--locustbg)">'+person('#5EAC8C','adult').replace('width="42" height="42"','width="28" height="28"')+'</span><div><div class="mn">配偶</div><div class="ms">关系证明待补充</div></div></div></div><div class="mini-note">补齐配偶关系证明后，可解锁家庭共同申领类补贴。</div>'}]},
  {t:'参保与资产',more:'核验数据源',items:[
-  {k:'社保参保',st:'已齐全 4/4',cls:'t',c:'green',sub:'参保状态正常',i:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18M7 15h4"/>',
+  {k:'社保参保',st:'已齐全 4/4',cls:'t',g:'social',sub:'参保状态正常',
    html:'<div class="infocard"><div class="ih">社会保障卡 · 参保信息</div><div class="ir"><span>参保状态</span><span style="color:#418B6C">正常参保 ✓</span></div><div class="ir"><span>参保地</span><span>北京市</span></div><div class="ir"><span>累计缴费</span><span>86 个月</span></div><div class="ir"><span>医保类型</span><span>职工基本医疗保险</span></div><div class="ir"><span>最近核验</span><span>2026-11-20</span></div></div><div class="mini-note">来自部门共享比对，平台不留存明文。</div>'},
-  {k:'住房公积金',st:'可提取 ¥6,000',cls:'b',c:'blue',sub:'材料可复用',i:'<path d="M4 11 12 4l8 7v9H4z"/><path d="M9 20v-6h6v6"/>',
+  {k:'住房公积金',st:'可提取 ¥6,000',cls:'b',g:'fund',sub:'材料可复用',
    html:'<div class="infocard"><div class="ih">住房公积金账户</div><div class="ir"><span>账户状态</span><span>正常缴存</span></div><div class="ir"><span>月缴存基数</span><span>¥12,000</span></div><div class="ir"><span>账户余额</span><span>¥48,600</span></div><div class="ir"><span>可提取额度</span><span style="color:var(--wall)">¥6,000</span></div></div><div class="mini-note">可自动复用缴存记录，实现租房提取免材料办理。</div>'},
-  {k:'学历学籍',st:'待补充',cls:'r',c:'lav',sub:'资助类匹配需要',i:'<path d="M4 6h16v12H4zM8 10h8M8 14h5"/>',
+  {k:'学历学籍',st:'待补充',cls:'r',g:'edu',sub:'资助类匹配需要',
    html:'<div class="infocard"><div class="ih">学历与学籍信息</div><div class="ir"><span>最高学历</span><span>本科</span></div><div class="ir"><span>毕业院校</span><span>北京某大学</span></div><div class="ir"><span>核验状态</span><span style="color:var(--canal)">待核验</span></div></div><div class="mini-note">补齐后可匹配学生资助、技能提升等补贴。</div>'},
-  {k:'个税专项扣除',st:'已核验',cls:'t',c:'red',sub:'子女教育 / 赡养老人',i:'<path d="M5 19 19 5M7 7h.01M17 17h.01"/>',
+  {k:'个税专项扣除',st:'已核验',cls:'t',g:'tax',sub:'子女教育 / 赡养老人',
    html:'<div class="infocard"><div class="ih">专项附加扣除 · 已核验</div><div class="ir"><span>子女教育</span><span style="color:#418B6C">已填报 ✓</span></div><div class="ir"><span>赡养老人</span><span style="color:#418B6C">已填报 ✓</span></div><div class="ir"><span>住房租金</span><span style="color:var(--canal)">可补填</span></div><div class="ir"><span>汇算年度</span><span>2026</span></div></div><div class="mini-note">与育儿补贴、住房类补贴的资格判断直接相关。</div>'}]},
  {t:'健康与照护',more:'体检与评估',items:[
-  {k:'健康档案',st:'待补充 1/2',cls:'a',c:'red',sub:'体检报告已上传',i:'<path d="M4 12h3l2-5 3 10 2-7 2 4h4"/>',
+  {k:'健康档案',st:'待补充 1/2',cls:'a',g:'health',sub:'体检报告已上传',
    html:'<div class="report"><div class="rh"><span class="hl">十</span><span class="rt">北京某医院 · 健康体检报告</span><span class="rd">2026-05-18</span></div><table><tr><td>血压</td><td>118/76 mmHg</td><td><span class="tag t">正常</span></td></tr><tr><td>空腹血糖</td><td>5.2 mmol/L</td><td><span class="tag t">正常</span></td></tr><tr><td>总胆固醇</td><td>5.3 mmol/L</td><td><span class="tag a">偏高</span></td></tr><tr><td>血常规</td><td>未见异常</td><td><span class="tag t">正常</span></td></tr></table><div class="rc-foot">体检结论：总体状况良好，建议低脂饮食、定期复查。</div></div><div class="mini-note" style="color:var(--wall)">待补充：失能评估报告（用于母亲护理补贴）。报告已脱敏。</div>'},
-  {k:'失能评估材料',st:'待上传',cls:'r',c:'gold',sub:'母亲护理补贴需要',i:'<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/>',
+  {k:'失能评估材料',st:'待上传',cls:'r',g:'assess',sub:'母亲护理补贴需要',
    html:'<div class="infocard"><div class="ih">代办材料清单 · 失能护理补贴</div><div class="ir"><span>失能评估报告</span><span style="color:var(--wall)">未上传</span></div><div class="ir"><span>身份证 / 户口簿</span><span style="color:#418B6C">已复用 ✓</span></div><div class="ir"><span>代办关系证明</span><span style="color:#418B6C">已核验 ✓</span></div><div class="ir"><span>受理单位</span><span>区民政局</span></div></div><div class="mini-note">补齐这一份材料，母亲护理补贴的匹配度可从 62% 提升到 95%。</div>'}]}
 ];
 function renderMe(){
   document.getElementById('meMods').innerHTML=meGroups.map(function(g,gi){
    return '<div class="mod"><div class="mod-h"><span class="bar"></span><b>'+g.t+'</b><span class="more" onclick="toast(\''+g.more+'\')">'+g.more+' ›</span></div>'+
-    '<div class="modgrid">'+g.items.map(function(it,ii){var key=gi+'_'+ii;return '<div class="mcard" id="mc_'+key+'" onclick="toggleCard(\''+key+'\')"><div class="mt"><span class="mi ic '+it.c+'">'+ico(it.i)+'</span><span class="mn">'+it.k+'</span></div><div class="ms">'+it.sub+'</div><div style="margin-top:5px"><span class="tag '+it.cls+'">'+it.st+'</span></div><div class="mexp" id="exp_'+key+'">展开查看 ⌄</div></div>'}).join('')+'</div>'+
+    '<div class="modgrid">'+g.items.map(function(it,ii){var key=gi+'_'+ii;return '<div class="mcard" id="mc_'+key+'" onclick="toggleCard(\''+key+'\')"><div class="mt"><span class="mi">'+gicon(it.g,36)+'</span><span class="mn">'+it.k+'</span></div><div class="ms">'+it.sub+'</div><div style="margin-top:5px"><span class="tag '+it.cls+'">'+it.st+'</span></div><div class="mexp" id="exp_'+key+'">展开查看 ⌄</div></div>'}).join('')+'</div>'+
     '<div class="moddet" id="md_'+gi+'"><div class="detline"></div><div id="mdc_'+gi+'"></div></div></div>'
   }).join('');
 }
@@ -815,6 +839,8 @@ function sheet(n){
   showSheet('<h3>'+n+'</h3><div class="sm">'+data.meta+'</div><div class="blk"><b>申领条件</b><ol style="margin:6px 0;padding-left:18px">'+data.cond.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ol></div><div class="blk"><b>所需材料</b><div style="margin-top:4px">'+data.mat.map(function(x){return '· '+x}).join('<br>')+'</div></div><div class="blk"><b>办理路径</b><div style="margin-top:4px">'+data.path+'</div></div><button class="bigbtn" onclick="openApply(\''+n+'\')">一键申领 / 办理</button>');
 }
 setTimeout(function(){document.getElementById('demotip').classList.add('hide')},8000);
+['msgIco1','msgIco2','msgIco3','msgIco4'].forEach(function(id,i){var e=document.getElementById(id);if(e)e.innerHTML=gicon(['arrived','todo','progress','news'][i],34)});
+document.getElementById('avZhang').innerHTML=AVATAR.zhang;
 renderCal();renderTL();renderSvc();renderMe();renderFam();aiTab(0);
 (function(){var h=location.hash.replace('#','');if(h&&document.getElementById('p-'+h))go(h)})();
 </script>
