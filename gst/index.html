@@ -366,6 +366,21 @@ body.elder .app{font-size:16px}body.elder .claim .nm,body.elder .ev .bd .t,body.
 .svcgrid2 .sv{border:none!important;background:transparent!important;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px;font-family:inherit;font-size:12px;font-weight:600;color:#2B3A45;cursor:pointer;padding:4px 0 2px;appearance:none;-webkit-appearance:none}
 #svcMods .mcard .ms{margin-top:7px}
 
+
+/* 顺手办：个人数据空间延伸的高频轻量工具 */
+.hand{margin:0 14px 12px;background:#fff;border:1px solid var(--line);border-radius:13px;padding:11px 12px 10px;box-shadow:0 2px 10px rgba(62,143,208,.035)}
+.hand-h{display:flex;align-items:baseline;margin-bottom:9px}
+.hand-h b{font-size:13px;color:#22415C}
+.hand-h .hs{font-size:9.5px;color:var(--faint);margin-left:auto}
+.handlist{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.handlist::-webkit-scrollbar{display:none}
+.hcard{flex:none;width:98px;border:1px solid var(--line);border-radius:10px;background:#FCFEFF;padding:9px 8px;cursor:pointer}
+.hcard:active{background:var(--canalbg)}
+.hcard .hi{width:36px;height:36px;margin-bottom:6px}
+.hcard .hn{font-size:11px;font-weight:700;color:#22415C;line-height:1.3}
+.hcard .hd2{font-size:9px;color:var(--muted);line-height:1.35;margin-top:3px}
+.hand-note{font-size:9px;color:var(--faint);margin-top:8px;text-align:center}
+
 /* 消息 / 我的：去低饱和底块，彩色图形直接落白底 */
 .msg .mi{width:36px;height:36px;border-radius:0;background:transparent!important;color:inherit}
 .msg .mi svg{width:36px;height:36px}
@@ -433,6 +448,13 @@ body.elder .app{font-size:16px}body.elder .claim .nm,body.elder .ev .bd .t,body.
           <div class="r2"><span class="tag t">可办理</span><span class="tag b">免材料</span><button class="btn" onclick="event.stopPropagation();openApply('住房公积金提取')">立即办理</button></div><div class="src">依据：住房公积金管理条例 · 当地公积金中心审核</div></div>
       </div>
       <div class="tipbar"><span>◎</span><span><b>政策找人</b>：以上条目由政策本体自动比对得出，每条均附政策依据。</span></div>
+
+      <div class="hand">
+        <div class="hand-h"><b>顺手办 · 生活小事</b><span class="hs">用已建档信息，一键办理 ›</span></div>
+        <div class="handlist" id="handList"></div>
+        <div class="hand-note">由您的个人数据账户自动填充，无需重复填表</div>
+      </div>
+
       <div class="tl-wrap"><div class="tl-h"><b>人生补贴地图</b><span>一生可领的补贴 · 点节点查看</span></div><div class="timeline" id="tlHome"></div><div class="stage-panel" id="stagePanel"></div></div>
       <div class="foot-txt">领补贴，上国数通 · 演示版数据均为示例，以官方发布为准</div>
     </section>
@@ -505,6 +527,8 @@ body.elder .app{font-size:16px}body.elder .claim .nm,body.elder .ev .bd .t,body.
         <div class="msg unread" data-k="todo" onclick="read(this)"><div class="mi" id="msgIco2"></div><div class="mb"><div class="t">高龄津贴资格复核提醒 <span class="kind">待办</span></div><div class="d">为母亲代办的高龄津贴需补充失能评估材料。</div><div class="tm">昨天 16:40</div></div></div>
         <div class="msg unread" data-k="ok" onclick="read(this)"><div class="mi" id="msgIco3"></div><div class="mb"><div class="t">住房公积金提取审核通过 <span class="kind">办理进度</span></div><div class="d">租房提取 ¥6,000 已审核通过，预计 1–3 个工作日到账。</div><div class="tm">11月24日 14:05</div></div></div>
         <div class="msg" data-k="pol" onclick="read(this)"><div class="mi" id="msgIco4"></div><div class="mb"><div class="t">12 月补贴日历已更新 <span class="kind">政策更新</span></div><div class="d">新增 6 项地方补贴开放时点，其中 3 项与您已建档信息匹配。</div><div class="tm">11月22日 10:00</div></div></div>
+        <div class="msg unread" data-k="pol" onclick="read(this)"><div class="mi" id="msgIco5"></div><div class="mb"><div class="t">11 月电费账单已出 <span class="kind">生活账单</span></div><div class="d">已同步户号，本月 ¥186.40，点此一键缴费。</div><div class="tm">今天 08:30</div></div></div>
+        <div class="msg" data-k="todo" onclick="read(this)"><div class="mi" id="msgIco6"></div><div class="mb"><div class="t">北京交通消费券后天开抢 <span class="kind">生活提醒</span></div><div class="d">需用已实名认证账户，已为您设置开抢前提醒。</div><div class="tm">昨天 18:00</div></div></div>
       </div>
       <div class="foot-txt">领补贴，上国数通 · 通知内容由政策规则自动生成</div>
     </section>
@@ -513,6 +537,7 @@ body.elder .app{font-size:16px}body.elder .claim .nm,body.elder .ev .bd .t,body.
       <div class="hd"><svg class="logo" viewBox="0 0 40 40" id="logo4"></svg><div><div class="tt">我的</div><div class="sub">个人档案 · 家庭账户</div></div></div>
       <div class="profile"><div class="av" id="avZhang"></div><div><div class="nm">张女士</div><div class="vr">✓ 已实名认证 · ID 已核验</div></div><div class="pill">家庭账户 3 人</div></div>
       <div id="meMods"></div>
+      <div class="lnk" style="margin:0 14px 12px"><div class="lk" onclick="go('home');setTimeout(function(){document.getElementById('handList').scrollIntoView({behavior:'smooth',block:'center'})},80)">已建档信息可顺手办：水电煤 · 挂号 · 电子签<span class="rg">去看看 ›</span></div></div>
       <div class="sec-t" style="margin:0 16px 9px"><b>我的家庭</b><span>亲情代办</span></div>
       <div class="fam" id="fam"></div>
       <div class="lnk">
@@ -608,7 +633,12 @@ var G={
  idcard:'<rect x="4" y="8" width="32" height="24" rx="4" fill="#fff" stroke="#3E8FD0" stroke-width="2.4"/><circle cx="14" cy="18" r="4.2" fill="#9CCBEC"/><path d="M8 28c0-3.3 3-5.3 6-5.3s6 2 6 5.3" fill="#9CCBEC"/><path d="M23 16h9M23 22h9" stroke="#C9DDF0" stroke-width="2" stroke-linecap="round"/><circle cx="31" cy="29" r="5" fill="#5EAC8C"/><path d="M28.5 29l1.8 1.8 3.2-3.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>',
  edu:'<path d="M4 16 L20 9 L36 16 L20 23 Z" fill="#3E8FD0"/><path d="M10 19v8c0 3 5 6 10 6s10-3 10-6v-8" fill="#5B8FC9"/><path d="M36 16v10" stroke="#E7B84F" stroke-width="2.4" stroke-linecap="round"/><circle cx="36" cy="28" r="2.6" fill="#E7B84F"/>',
  health:'<rect x="5" y="7" width="30" height="27" rx="4" fill="#fff" stroke="#5EAC8C" stroke-width="2.4"/><path d="M10 14h12M10 19h8" stroke="#C6E5D6" stroke-width="2.2" stroke-linecap="round"/><path d="M9 28h5l2-4 3 8 2.5-6 2 2h7" fill="none" stroke="#DD6A55" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
- assess:'<rect x="6" y="5" width="28" height="30" rx="4" fill="#fff" stroke="#E7B84F" stroke-width="2.4"/><path d="M12 13h16M12 20h13" stroke="#EAD3A3" stroke-width="2.2" stroke-linecap="round"/><path d="M13 28l3 3 5-6" fill="none" stroke="#5EAC8C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 29h6" stroke="#EAD3A3" stroke-width="2.2" stroke-linecap="round"/>'
+ assess:'<rect x="6" y="5" width="28" height="30" rx="4" fill="#fff" stroke="#E7B84F" stroke-width="2.4"/><path d="M12 13h16M12 20h13" stroke="#EAD3A3" stroke-width="2.2" stroke-linecap="round"/><path d="M13 28l3 3 5-6" fill="none" stroke="#5EAC8C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 29h6" stroke="#EAD3A3" stroke-width="2.2" stroke-linecap="round"/>',
+ utility:'<path d="M9 34h22M12 34V12a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v22" fill="#EAF3FB" stroke="#3E8FD0" stroke-width="2.4"/><circle cx="17" cy="19" r="4" fill="none" stroke="#E7B84F" stroke-width="2"/><path d="M17 15v8M13.5 17h7M13.5 21h7" stroke="#E7B84F" stroke-width="1.6"/><path d="M23 14h5M23 19h5" stroke="#9CCBEC" stroke-width="2" stroke-linecap="round"/>',
+ transit:'<rect x="6" y="6" width="28" height="25" rx="6" fill="#3E8FD0"/><rect x="10" y="12" width="20" height="9" rx="2" fill="#EAF3FB"/><circle cx="14" cy="25" r="2.4" fill="#E7B84F"/><circle cx="26" cy="25" r="2.4" fill="#E7B84F"/><path d="M12 31v3M28 31v3" stroke="#3E8FD0" stroke-width="2.4" stroke-linecap="round"/><path d="M15 16.5h10" stroke="#3E8FD0" stroke-width="1.8" stroke-linecap="round"/>',
+ clinic:'<rect x="5" y="9" width="30" height="24" rx="4" fill="#fff" stroke="#5EAC8C" stroke-width="2.4"/><path d="M5 17h30" stroke="#5EAC8C" stroke-width="2.4"/><path d="M13 5v6M27 5v6" stroke="#5EAC8C" stroke-width="2.4" stroke-linecap="round"/><rect x="10" y="22" width="7" height="6" rx="1.5" fill="#D6EAF9"/><rect x="20" y="22" width="7" height="6" rx="1.5" fill="#D6EAF9"/><circle cx="31" cy="30" r="6" fill="#DD6A55"/><path d="M31 27v6M28 30h6" stroke="#fff" stroke-width="2" stroke-linecap="round"/>',
+ coupon:'<path d="M5 12a3 3 0 0 1 3-3h24a3 3 0 0 1 3 3v4a4 4 0 0 0 0 8v4a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-4a4 4 0 0 0 0-8z" fill="#FDEEEA" stroke="#DD6A55" stroke-width="2.2"/><path d="M20 13v14" stroke="#DD6A55" stroke-width="1.8" stroke-dasharray="2 3"/><path d="M12 19h4M26 19h4" stroke="#E7B84F" stroke-width="2" stroke-linecap="round"/>',
+ sign:'<rect x="7" y="5" width="26" height="30" rx="4" fill="#fff" stroke="#8B7BC4" stroke-width="2.4"/><path d="M13 14h14M13 20h14" stroke="#C9BDE8" stroke-width="2.2" stroke-linecap="round"/><path d="M12 29c3-6 6-8 8-6s4 5 8-3" fill="none" stroke="#5EAC8C" stroke-width="2.4" stroke-linecap="round"/><circle cx="32" cy="30" r="5" fill="#E7B84F"/><path d="M29.5 30l1.8 1.8 3.2-3.6" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/>'
 };
 function gicon(k,sz){sz=sz||36;return '<svg width="'+sz+'" height="'+sz+'" viewBox="0 0 40 40">'+(G[k]||G.all)+'</svg>'}
 
@@ -752,6 +782,23 @@ function read(el){el.classList.remove('unread');updateDot()}
 function readAll(){document.querySelectorAll('.msg').forEach(function(m){m.classList.remove('unread')});updateDot();toast('已全部标记为已读')}
 function updateDot(){var n=document.querySelectorAll('.msg.unread').length;var d=document.querySelector('.hd .dot');if(d)d.style.display=n?'block':'none'}
 
+/* 顺手办：档案延伸的高频轻量工具 */
+var handItems=[
+ {n:'缴水电煤',d:'户号已同步 · 一键缴',g:'utility'},
+ {n:'公交出行',d:'乘车码 · 免扫码',g:'transit'},
+ {n:'预约挂号',d:'300+ 医院直连',g:'clinic'},
+ {n:'抢消费券',d:'开抢前提醒您',g:'coupon'},
+ {n:'合同电子签',d:'身份已核验 · 秒签',g:'sign'}
+];
+function renderHand(){
+ document.getElementById('handList').innerHTML=handItems.map(function(h,i){return '<div class="hcard" onclick="handGo('+i+')"><div class="hi">'+gicon(h.g,36)+'</div><div class="hn">'+h.n+'</div><div class="hd2">'+h.d+'</div></div>'}).join('')
+}
+function handGo(i){
+ var h=handItems[i];
+ if(h.g==='coupon'){go('cal');toast('已打开补贴日历 · 消费券开抢会自动提醒');return}
+ showSheet('<h3>'+h.n+'</h3><div class="sm">'+h.d+'</div><div class="blk"><b>已自动复用您的档案</b><div style="margin-top:5px">· 身份信息 · 已核验 ✓</div><div>· 实名认证 · 已核验 ✓</div><div>· 收款/支付账户 · 已绑定 ✓</div><div style="margin-top:8px;color:var(--muted)">无需重复填表，确认后即可办理</div></div><button class="bigbtn" onclick="closeSheet();toast(\''+h.n+'：演示版已办理，正式版将跳转对应服务\')">确认办理</button>');
+}
+
 /* 我的：分层模块 + 明显展开按钮 */
 var idSvg='<svg viewBox="0 0 38 52" fill="none"><circle cx="19" cy="16" r="9" fill="#B9CCE0"/><path d="M4 52c0-9 7-16 15-16s15 7 15 16" fill="#B9CCE0"/></svg>';
 /* 彩色卡通头像：无低饱和底块，直接落在白底上 */
@@ -832,9 +879,9 @@ function sheet(n){
   showSheet('<h3>'+n+'</h3><div class="sm">'+data.meta+'</div><div class="blk"><b>申领条件</b><ol style="margin:6px 0;padding-left:18px">'+data.cond.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ol></div><div class="blk"><b>所需材料</b><div style="margin-top:4px">'+data.mat.map(function(x){return '· '+x}).join('<br>')+'</div></div><div class="blk"><b>办理路径</b><div style="margin-top:4px">'+data.path+'</div></div><button class="bigbtn" onclick="openApply(\''+n+'\')">一键申领 / 办理</button>');
 }
 setTimeout(function(){document.getElementById('demotip').classList.add('hide')},8000);
-['msgIco1','msgIco2','msgIco3','msgIco4'].forEach(function(id,i){var e=document.getElementById(id);if(e)e.innerHTML=gicon(['arrived','todo','progress','news'][i],34)});
+['msgIco1','msgIco2','msgIco3','msgIco4','msgIco5','msgIco6'].forEach(function(id,i){var e=document.getElementById(id);if(e)e.innerHTML=gicon(['arrived','todo','progress','news','utility','coupon'][i],34)});
 document.getElementById('avZhang').innerHTML=AVATAR.zhang;
-renderCal();renderTL();renderSvc();renderMe();renderFam();aiTab(0);
+renderCal();renderTL();renderSvc();renderHand();renderMe();renderFam();aiTab(0);
 (function(){var h=location.hash.replace('#','');if(h&&document.getElementById('p-'+h))go(h)})();
 </script>
 </body>
