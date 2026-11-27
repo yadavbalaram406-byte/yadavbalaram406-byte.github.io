@@ -67,12 +67,14 @@ body{background:#DEE9EE;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
 /* 状态型触达 */
 .status{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 14px 4px}
 .status::-webkit-scrollbar{display:none}
-.scard{flex:none;width:172px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 12px}
+.scard{flex:none;width:172px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 12px;cursor:pointer;transition:.15s}
+.scard:active{background:#F4F9FD;transform:scale(.98)}
 .scard .r{display:flex;align-items:center;gap:7px}
 .scard .si{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:none}
 .scard .t{font-size:11.5px;font-weight:700;color:var(--navy);line-height:1.3}
 .scard .d{font-size:10.5px;color:var(--muted);margin-top:7px}
 .scard .money{font-size:14px;font-weight:800;color:var(--red);margin-top:5px}
+.scard .ar{font-size:11px;color:var(--blue);margin-left:auto;font-weight:700}
 
 /* 跨域一件事 */
 .flow{margin:0 14px 4px}
@@ -158,8 +160,12 @@ body{background:#DEE9EE;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
     <div class="eg"><button onclick="fill('我下个月从北京跳槽去深圳')">跨省换工作</button><button onclick="fill('家里老人失能了，能办什么')">老人失能照护</button><button onclick="fill('孩子出生了要办哪些事')">新生儿一件事</button><button onclick="fill('我想把公积金取出来交房租')">公积金提取</button></div>
    </div>
 
-   <div class="sec"><div class="sec-t"><b>国家替您盯着的事</b><span>资格一变就提醒您</span></div>
+   <div class="sec"><div class="sec-t"><b>智能提醒</b><span>资格一变就提醒您 · 点击查看</span></div>
     <div class="status" id="statusList"></div>
+   </div>
+
+   <div class="sec"><div class="sec-t"><b>您能领的钱</b><span>政策找人 · 依据可查</span></div>
+    <div class="card" style="border-color:#F0D8D2;background:linear-gradient(115deg,#FFF9F7,#FFFFFF)"><div style="display:flex;align-items:center;gap:8px"><b style="font-size:13.5px;flex:1;color:var(--navy)">育儿补贴</b><span style="font-size:18px;font-weight:800;color:var(--red)">¥3,600<small style="font-size:11px">/年</small></span></div><div style="font-size:11px;color:var(--muted);margin-top:7px">3 周岁以下婴幼儿 · 一孩二孩三孩同标准</div><div style="margin-top:9px"><span class="tag r">可申领</span><span class="tag b">国家基础标准</span><button class="btn" style="float:right" onclick="apply('育儿补贴')">一键申领</button></div></div>
    </div>
 
    <div class="sec"><div class="sec-t"><b>跨域一件事 · AI 全程跑腿</b><span class="more" onclick="go('agent')">看全流程 ›</span></div>
@@ -168,10 +174,6 @@ body{background:#DEE9EE;font-family:"PingFang SC","Hiragino Sans GB","Microsoft 
 
    <div class="sec"><div class="sec-t"><b>高频便民 · 月度常用</b><span>从补贴到生活，一站式</span></div>
     <div class="card"><div class="grid" id="quickGrid"></div></div>
-   </div>
-
-   <div class="sec"><div class="sec-t"><b>您能领的钱</b><span>政策找人 · 依据可查</span></div>
-    <div class="card"><div style="display:flex;align-items:center;gap:8px"><b style="font-size:12.5px;flex:1">育儿补贴</b><span style="font-size:15px;font-weight:800;color:var(--red)">¥3,600/年</span></div><div style="font-size:10.5px;color:var(--muted);margin-top:6px">3 周岁以下婴幼儿 · 已核验通过</div><div style="margin-top:8px"><span class="tag r">可申领</span><button class="btn" style="float:right" onclick="apply('育儿补贴')">一键申领</button></div></div>
    </div>
    <div class="hint" style="margin-top:14px"><span>◎</span><span>入口可能在微信、支付宝，但<b>答案和协议在国数通</b>——每次调用都让政策本体更准。</span></div>
   </section>
@@ -255,12 +257,13 @@ function apply(n){showSheet('<h3>一表通申 · '+n+'</h3><div class="sm">材�
 
 /* 状态型触达 */
 var statusItems=[
- {t:'育儿补贴可申领',d:'孩子即将满 1 岁 · 3600 元/年',g:'arrived',c:'#E8F5EF'},
- {t:'社保即将断缴',d:'灵活就业参保还有 12 天到期',g:'social',c:'#FDF6E4'},
- {t:'证照到期提醒',d:'居住证 30 天后到期 · 可线上续签',g:'idcard',c:'#EAF3FB'},
- {t:'电费账单已出',d:'本月 ¥186.40 · 一键缴',g:'utility',c:'#FDEEEA'}
+ {t:'育儿补贴可申领',d:'孩子即将满 1 岁 · 3600 元/年',g:'arrived',c:'#E8F5EF',detail:'系统比对政策本体发现：您家孩子符合育儿补贴申领条件，每孩每年 3600 元，发至年满 3 周岁。已自动复用出生医学证明与户籍信息，无需重复填表。',act:'一键申领',fn:"apply('育儿补贴')"},
+ {t:'社保即将断缴',d:'灵活就业参保还有 12 天到期',g:'social',c:'#FDF6E4',detail:'您的灵活就业参保将在 12 天后到期。系统将自动核验缴费资格，可在国数通一键续缴，缴费记录同步归集到您的个人数据账户。',act:'去续缴',fn:"toast('演示版：已跳转灵活就业参保缴费')"},
+ {t:'证照到期提醒',d:'居住证 30 天后到期 · 可线上续签',g:'idcard',c:'#EAF3FB',detail:'居住证将在 30 天后到期。已核验您符合续签条件，电子证照自动填充，线上办理免跑窗口。',act:'去续签',fn:"toast('演示版：已跳转居住证续签')"},
+ {t:'电费账单已出',d:'本月 ¥186.40 · 一键缴',g:'utility',c:'#FDEEEA',detail:'11 月电费账单 ¥186.40 已出，缴费户号已同步至您的账户，可一键完成缴费并自动归集票据。',act:'去缴费',fn:"toast('演示版：已跳转生活缴费')"}
 ];
-document.getElementById('statusList').innerHTML=statusItems.map(function(s){return '<div class="scard"><div class="r"><span class="si" style="background:'+s.c+'">'+gi(s.g,30)+'</span><span class="t">'+s.t+'</span></div><div class="d">'+s.d+'</div></div>'}).join('');
+document.getElementById('statusList').innerHTML=statusItems.map(function(s,i){return '<div class="scard" onclick="statusDetail('+i+')"><div class="r"><span class="si" style="background:'+s.c+'">'+gi(s.g,30)+'</span><span class="t">'+s.t+'</span></div><div class="d">'+s.d+'</div><div class="ar">查看详情 ›</div></div>'}).join('');
+function statusDetail(i){var s=statusItems[i];showSheet('<h3>'+s.t+'</h3><div class="sm">由政策本体与您的档案自动比对得出</div><div class="blk">'+s.detail+'</div><div class="blk"><b>数据依据</b><br>· 资格规则 · 政策本体核验<br>· 原始资料不出域，仅返回结果</div><button class="big" onclick="closeSheet();'+s.fn+'">'+s.act+'</button>')}
 
 /* 跨域一件事流程 */
 var steps=[['人社','社保转移关系续接','已办结'],['住建','公积金转移与租房提取','办理中'],['公安','深圳居住证申领','待启动'],['税务','租房个税专项扣除','待启动'],['地方','深圳人才补贴资格核验','待启动']];
